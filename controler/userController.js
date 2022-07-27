@@ -1,5 +1,6 @@
 const connection =require("../models/dbConnect");
 const dbConnect=require("../models/dbConnect");
+const sendmail = require("../service/sendmail");
 
 class userController{
     insert(req,res,next){
@@ -83,8 +84,10 @@ class userController{
     updatepass(req,res,next){
         if(req.body){
             try{
+                let type=2;
                 const sql="update user set matkhau=? where email=? "
-               
+                let mail={email:req.body.email,type:type}
+                sendmail.nodejsMail(mail);
                 const values= [req.body.matkhau,req.body.email]
                     dbConnect.query(sql, values, (error, result)=>{
                         if(error) throw error

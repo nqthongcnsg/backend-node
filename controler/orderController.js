@@ -26,7 +26,7 @@ class cartController{
            
             const query= "select * from hoadon where email=? and trangthai=?";
             const values= [req.body.email,req.body.trangthai];
-            console.log(req.body);
+         
             dbConnect.query(query, values, (error, result)=>{
                 if(error) throw error
                 if(result.length>0){
@@ -46,7 +46,7 @@ class cartController{
            
             const query= "select * from hoadon where trangthai=?";
             const values= [req.body.trangthai];
-            console.log(req.body);
+  
             dbConnect.query(query, values, (error, result)=>{
                 if(error) throw error
                 if(result.length>0){
@@ -87,7 +87,7 @@ class cartController{
             
            
                 const values= [req.body.trangthai,req.body.mahd];
-                console.log(values);
+             
                 dbConnect.query(query, values, (error, result)=>{
                     if(error) throw error
                     if(result.affectedRows>0) return res.json({"success": true, message: "successful"})
@@ -109,9 +109,12 @@ class cartController{
                 const query= "insert into hoadon(mahd,email,ngayhd,tennguoinhan,diachinguoinhan,ngaynhan,dienthoai,trangthai,thanhtoan) values(?,?,?,?,?,?,?,?,?)";
                
             
-           
+           var type = 1;
                 const values= [req.body.mahd, req.body.email, req.body.dateStart, req.body.name, req.body.address,req.body.dateend,req.body.phone,req.body.trangthai,req.body.thanhtoan];
-                
+                console.log('aaa')
+                let mail={email:req.body.email,mahd:req.body.mahd,dateStart:req.body.dateStart, name:req.body.name, address:req.body.address,dateend:req.body.dateend,type:type}
+                sendmail.nodejsMail(mail);
+                console.log('bbbb')
                 dbConnect.query(query, values, (error, result)=>{
                     if(error) throw error
                     if(result.affectedRows>0) return res.json({"success": true, message: "successful"})
@@ -164,6 +167,26 @@ class cartController{
             throw error
         }
     }
+    getOrderSearch(req,res,next){
+        var searchTerm= req.params.key
+        let c= '%'+searchTerm+'%'
+              try {
+             const query= "select * from hoadon where mahd like ?";
+           
+             connection.query(query,[c], (error, result)=>{
+                 if(error) throw error
+                 if(result.length>0){
+                    
+                     return res.json({success: true, message:"successful", result})
+                 }
+                 return res.json({success: false, message: "data not found"})  
+             })
+         } catch (error) {
+             throw error
+         }
+      
+        
+    }
     updatethanhtoan(req,res,next){
        
         if(req.body){
@@ -174,7 +197,7 @@ class cartController{
             
            
                 const values= [req.body.mahd];
-                console.log(values);
+         
                 dbConnect.query(query, values, (error, result)=>{
                     if(error) throw error
                     if(result.affectedRows>0) return res.json({"success": true, message: "successful"})

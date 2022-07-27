@@ -1,7 +1,7 @@
 const express= require("express")
 const app= express()
 const path= require('path')
-const port= 5001 
+const port= 5000 
 const routes= require("./router/index")
 const cors= require("cors")
 app.use(express.json())

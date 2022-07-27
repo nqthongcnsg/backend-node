@@ -11,4 +11,6 @@ router.get('/getdetail:mahd',orderController.getDetail);
 router.post('/addOrder',orderController.addOrder);
 router.post('/addDetail',orderController.addDetail);
 router.get('/getHoadon:mahd',orderController.getHoadon);
+router.get('/getSearch/:key',orderController.getOrderSearch);
+//router.get('/getSearch',orderController.getProduct);
 module.exports=router;

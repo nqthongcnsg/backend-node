@@ -1,5 +1,0 @@
-mysql://b38e9678cb755c:8052c37d@us-cdbr-east-06.cleardb.net/heroku_fb7739fae17ff11?reconnect=true
-username:b38e9678cb755c
-pass:8052c37d
-host:us-cdbr-east-06.cleardb.net
-dbname:heroku_fb7739fae17ff11
