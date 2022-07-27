@@ -1,0 +1,5 @@
+ mysql://bccb90af80e10c:90a67e67@us-cdbr-east-06.cleardb.net/heroku_c23a03559c811d3?reconnect=true
+ user:bccb90af80e10c
+ pass:90a67e67
+ host:us-cdbr-east-06.cleardb.net
+ dbname:heroku_c23a03559c811d3
